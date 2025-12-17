@@ -1,0 +1,20 @@
+/* //Tiptip css */
+.wksap-mr-25{
+    margin-right: 25px;
+    display: inline-flex;
+    align-items: center;
+    pointer-events: none;
+}
+.wksap-mr-15{
+    margin-right: 15px;
+}
+.wksap-pf-100{
+    position: fixed;
+    right: 45%;
+    top: 45%;
+    vertical-align:middle;
+    display:none;
+}
+.wksap-mr-100{
+    vertical-align:middle;
+}

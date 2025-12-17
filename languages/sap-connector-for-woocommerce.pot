@@ -1,0 +1,1091 @@
+# Copyright (C) 2025 Webkul
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: SAP Connector for WooCommerce 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/sap-connector-for-woocommerce/\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2025-12-11T05:25:45+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"language-team: LANGUAGE <EMAIL@ADDRESS>\n"
+"X-Domain: sap-connector-for-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: sap-connector-for-woocommerce.php
+msgid "SAP Connector for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: sap-connector-for-woocommerce.php
+msgid "https://webkul.com/"
+msgstr ""
+
+#. Description of the plugin
+#: sap-connector-for-woocommerce.php
+msgid "Connector that lets your SAP Business One Connect to WooCommerce store."
+msgstr ""
+
+#. Author of the plugin
+#: sap-connector-for-woocommerce.php
+msgid "Webkul"
+msgstr ""
+
+#. Author URI of the plugin
+#: sap-connector-for-woocommerce.php
+msgid "http://webkul.com"
+msgstr ""
+
+#: helpers/class-wksap-connector.php:131
+msgid "Error: SAP connection not configured."
+msgstr ""
+
+#: helpers/class-wksap-connector.php:134
+#: helpers/class-wksap-connector.php:148
+#: helpers/class-wksap-connector.php:190
+msgid "Error: sObject not set."
+msgstr ""
+
+#: helpers/class-wksap-connector.php:155
+#: helpers/class-wksap-connector.php:203
+msgid "Error: SAP connection not available."
+msgstr ""
+
+#: helpers/class-wksap-helper.php:140
+msgid "System"
+msgstr ""
+
+#: helpers/class-wksap-helper.php:140
+msgid "Log cleanup performed for source: "
+msgstr ""
+
+#: helpers/class-wksap-helper.php:146
+msgid "Log cleanup completed. WooCommerce manages log rotation automatically."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:52
+#: includes/admin/class-wksap-admin-function-handler.php:53
+msgid "SAP Connector"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:63
+#: includes/admin/class-wksap-admin-function-handler.php:64
+msgid "Configuration"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:73
+#: includes/admin/class-wksap-admin-function-handler.php:74
+#: templates/admin/class-wksap-users-view.php:126
+msgid "Synchronize Users"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:83
+#: includes/admin/class-wksap-admin-function-handler.php:84
+msgid "Synchronize Categories"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:84
+#: includes/admin/class-wksap-admin-function-handler.php:92
+#: includes/admin/class-wksap-admin-function-handler.php:100
+msgid "full version only"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:91
+#: includes/admin/class-wksap-admin-function-handler.php:92
+msgid "Synchronize Products"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:99
+#: includes/admin/class-wksap-admin-function-handler.php:100
+msgid "Synchronize Orders"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:166
+msgid "Items Per Page"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:194
+msgid "It looks like you have been synchronizing."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:195
+msgid "If you leave before completion, some of the data might not be saved."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:196
+msgid "Want to Continue?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:197
+msgid "Are you sure?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:198
+msgid "You want to Synchronize User"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:199
+msgid "Yes, Sync it!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:200
+msgid "User(s) Export Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:201
+msgid "Cannot start new Sync process"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:202
+msgid "While another is going on"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:203
+msgid "Select Export Filer Option"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:204
+msgid "Date Created"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:205
+msgid "Export all"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:206
+msgid "Export on Basis of"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:207
+msgid "Next"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:208
+msgid "Please Select an Option"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:209
+msgid "User`s Created Between"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:210
+msgid "User`s Modified Between"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:211
+msgid "Pick date rage"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:212
+msgid "Back"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:213
+msgid "Confirm"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:214
+msgid "Cancel"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:215
+msgid "Invalid date selection"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:216
+msgid "From date should be before To date"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:217
+msgid "Are you Sure you want to Delete logs older than last seven days?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:218
+msgid "Are you sure you want to dismiss this block. Import/export is going on.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:219
+msgid "You want to perform this action. There is already import/export going on"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:220
+msgid "Please Select User!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:221
+msgid "To Sync the record at SAP end of Business Partners"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:222
+msgid "Please Select Category!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:223
+msgid "To Sync the record at SAP end of Item Groups"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:224
+msgid "Category(ies) Export Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:225
+msgid "Order(s) Export Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:226
+msgid "Please Select Orders!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:227
+msgid "To Sync the record at SAP Sales Order end"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:228
+msgid "Product(s) Export Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:229
+msgid "Please Select Products!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:230
+msgid "To Sync the record at SAP end of Items"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:231
+msgid "Records have already been queued"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:232
+msgid "Do you want to stop the background job?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:233
+msgid "Yes, Stop it!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:234
+msgid "You want to import all item groups(Categories)"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:235
+msgid "Yes, Import it!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:236
+msgid "Import/Export going on.Are you sure you want to perform this action.?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:237
+msgid "Import/Export going on. Are you sure you want to perform this action?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:238
+msgid "\"Order(s) Export Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:239
+#: templates/admin/class-wksap-settings-view.php:223
+msgid "Error"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:240
+msgid "User Sync Disabled in Settings"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:241
+msgid " User Sync Disabled in Settings all actions runs but not perform..."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:242
+#: includes/class-wksap-main.php:139
+msgid "Dismiss this notice."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:243
+msgid "Completed"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:244
+msgid "Product(s) Import Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:245
+msgid "Category(ies) Import Started.."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:246
+msgid "Error Occurred"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:247
+msgid "Background Job!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:248
+msgid "Selected For Unlink"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:249
+msgid "Selected For Export"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:250
+msgid "Selected For Import"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:251
+msgid "No "
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:252
+msgid "Alert"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:253
+msgid "Selected Mapping Record has been Unlinked."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:254
+msgid "All Mapping Record has been Unlinked"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:255
+msgid "No Mapping Available"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:256
+msgid "Success"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:257
+msgid "All items have been unlinked."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:258
+msgid "No records are available to unlink"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:259
+msgid "Unlinked!"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:260
+msgid "Time Elapsed:"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:261
+msgid "Fetching total records..."
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:262
+msgid "Importing products might create duplicates in WooCommerce if post id is not populated in SAP. Continue?"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:263
+msgid "UserName can`t be blank"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:264
+msgid "Password can`t be blank"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:265
+msgid "Company DB can`t be blank"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:266
+msgid "Service Layer API  URL  can`t be blank"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:267
+msgid "Please enter the SAP Prefix"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:268
+msgid "Please enter the License Key which is provided by Webkul"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:269
+msgid "Prefix length not be greater than 3"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:270
+msgid "Prefix length must be 3"
+msgstr ""
+
+#: includes/admin/class-wksap-admin-function-handler.php:271
+#: includes/admin/class-wksap-admin-function-handler.php:272
+msgid "Please wait export going on.."
+msgstr ""
+
+#: includes/class-wksap-main.php:111
+msgid "Connection Status:"
+msgstr ""
+
+#: includes/class-wksap-main.php:112
+msgid "Connection "
+msgstr ""
+
+#: includes/class-wksap-main.php:251
+#: includes/class-wksap-main.php:254
+#: includes/class-wksap-main.php:256
+#: includes/class-wksap-main.php:274
+#: includes/class-wksap-main.php:429
+#: includes/class-wksap-main.php:435
+#: includes/class-wksap-main.php:444
+#: includes/class-wksap-main.php:453
+#: includes/class-wksap-main.php:457
+#: includes/class-wksap-main.php:507
+#: includes/class-wksap-main.php:571
+#: includes/class-wksap-main.php:699
+#: includes/class-wksap-main.php:705
+#: includes/class-wksap-main.php:710
+#: includes/class-wksap-main.php:718
+#: includes/class-wksap-main.php:722
+#: includes/class-wksap-main.php:768
+#: includes/class-wksap-main.php:843
+#: includes/class-wksap-main.php:918
+#: includes/class-wksap-main.php:1050
+#: includes/class-wksap-main.php:1056
+#: includes/class-wksap-main.php:1061
+#: includes/class-wksap-main.php:1069
+#: includes/class-wksap-main.php:1073
+#: includes/class-wksap-main.php:1119
+#: includes/class-wksap-main.php:1199
+#: includes/class-wksap-main.php:1203
+#: includes/class-wksap-main.php:1205
+#: includes/class-wksap-main.php:1214
+#: includes/class-wksap-main.php:1215
+#: includes/class-wksap-main.php:1220
+#: includes/class-wksap-main.php:1226
+#: includes/class-wksap-main.php:1345
+#: includes/class-wksap-main.php:1346
+#: includes/class-wksap-synchronized-process-user.php:54
+#: includes/class-wksap-synchronized-process-user.php:58
+#: includes/class-wksap-synchronized-process-user.php:76
+#: templates/admin/class-wksap-settings-view.php:232
+msgid "User"
+msgstr ""
+
+#: includes/class-wksap-main.php:251
+msgid "end here"
+msgstr ""
+
+#: includes/class-wksap-main.php:254
+msgid " Before calling wooSAPExportUser via dateFiler"
+msgstr ""
+
+#: includes/class-wksap-main.php:256
+msgid " After calling wooSAPExportUser via dateFiler"
+msgstr ""
+
+#: includes/class-wksap-main.php:316
+#: includes/class-wksap-main.php:883
+#: includes/class-wksap-main.php:901
+#: includes/class-wksap-main.php:905
+#: includes/class-wksap-main.php:907
+#: includes/class-wksap-main.php:909
+#: includes/class-wksap-main.php:911
+#: includes/class-wksap-main.php:1248
+#: includes/class-wksap-main.php:1337
+msgid "Debug"
+msgstr ""
+
+#: includes/class-wksap-main.php:316
+#: includes/class-wksap-main.php:883
+#: includes/class-wksap-main.php:1248
+msgid "nonce not verifyed"
+msgstr ""
+
+#: includes/class-wksap-main.php:317
+#: templates/admin/class-wksap-settings-view.php:85
+msgid "Security check failed"
+msgstr ""
+
+#: includes/class-wksap-main.php:324
+msgid "No user id"
+msgstr ""
+
+#: includes/class-wksap-main.php:412
+#: includes/class-wksap-main.php:682
+#: includes/class-wksap-main.php:1033
+msgid "EmailAddress eq "
+msgstr ""
+
+#: includes/class-wksap-main.php:425
+#: includes/class-wksap-main.php:695
+#: includes/class-wksap-main.php:1046
+msgid "Error in User Update:"
+msgstr ""
+
+#: includes/class-wksap-main.php:432
+#: includes/class-wksap-main.php:456
+#: includes/class-wksap-main.php:702
+#: includes/class-wksap-main.php:721
+#: includes/class-wksap-main.php:1053
+#: includes/class-wksap-main.php:1072
+msgid "Export - User Id: "
+msgstr ""
+
+#: includes/class-wksap-main.php:432
+#: includes/class-wksap-main.php:702
+#: includes/class-wksap-main.php:1053
+msgid " Updated, SAP BP Id: "
+msgstr ""
+
+#: includes/class-wksap-main.php:444
+#: includes/class-wksap-main.php:710
+#: includes/class-wksap-main.php:1061
+msgid "LINE NUmber :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:444
+#: includes/class-wksap-main.php:710
+#: includes/class-wksap-main.php:1061
+msgid "   Here :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:448
+#: includes/class-wksap-main.php:714
+#: includes/class-wksap-main.php:1065
+msgid "Error in User Insert:"
+msgstr ""
+
+#: includes/class-wksap-main.php:456
+#: includes/class-wksap-main.php:721
+#: includes/class-wksap-main.php:1072
+msgid " inserted, SAP BP Id: "
+msgstr ""
+
+#: includes/class-wksap-main.php:541
+msgid "Kindly enable import settings."
+msgstr ""
+
+#: includes/class-wksap-main.php:558
+#: includes/class-wksap-main.php:884
+#: includes/class-wksap-main.php:1249
+#: includes/class-wksap-main.php:1338
+msgid "Invalid Nonce"
+msgstr ""
+
+#: includes/class-wksap-main.php:571
+#: includes/class-wksap-main.php:918
+msgid " User Ids :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:576
+#: includes/class-wksap-main.php:923
+msgid "There are no users to sync"
+msgstr ""
+
+#. translators: 1: Total number of users processed 2: Number of users updated 3: Number of users added 4: Number of errors
+#: includes/class-wksap-main.php:810
+#: includes/class-wksap-main.php:1162
+#, php-format
+msgid "Processed %1$d user: %2$d updated, %3$d added, %4$d error"
+msgid_plural "Processed %1$d users: %2$d updated, %3$d added, %4$d errors"
+msgstr[0] ""
+msgstr[1] ""
+
+#: includes/class-wksap-main.php:843
+msgid "  Only 50 Free Sync Allowed, For More Please Contact Us"
+msgstr ""
+
+#: includes/class-wksap-main.php:922
+msgid "There is no any user within the selected date range"
+msgstr ""
+
+#: includes/class-wksap-main.php:1203
+msgid " in date wksap_create_background_job_for_objects File Export user Ids :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:1205
+msgid "  here 1"
+msgstr ""
+
+#: includes/class-wksap-main.php:1214
+msgid " data "
+msgstr ""
+
+#: includes/class-wksap-main.php:1215
+msgid " $item_type "
+msgstr ""
+
+#: includes/class-wksap-main.php:1220
+msgid "   here 3"
+msgstr ""
+
+#: includes/class-wksap-main.php:1226
+msgid " in wksap_create_background_job_for_objects File Export user Ids :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:1259
+msgid "Background Process For Order is Stopped"
+msgstr ""
+
+#: includes/class-wksap-main.php:1337
+msgid " nonce verification failed  "
+msgstr ""
+
+#: includes/class-wksap-main.php:1345
+msgid " wksap_delete_mapping_data process :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:1346
+msgid " wksap_delete_mapping_data user :- "
+msgstr ""
+
+#: includes/class-wksap-main.php:1355
+msgid "User Deleted Successfully, Please Refresh Page"
+msgstr ""
+
+#: includes/class-wksap-main.php:1364
+msgid "All User Deleted Successfully, Please Refresh Page"
+msgstr ""
+
+#: includes/class-wksap-main.php:1366
+msgid "No User Found"
+msgstr ""
+
+#: includes/class-wksap-synchronized-process-user.php:53
+msgid "User Sync with "
+msgstr ""
+
+#: includes/class-wksap-synchronized-process-user.php:53
+msgid " Date Range: "
+msgstr ""
+
+#: includes/class-wksap-synchronized-process-user.php:53
+#: includes/class-wksap-synchronized-process-user.php:57
+msgid " is Processed Successfully:"
+msgstr ""
+
+#: includes/class-wksap-synchronized-process-user.php:57
+msgid "User Sync Type: "
+msgstr ""
+
+#: includes/class-wksap-synchronized-process-user.php:76
+msgid "Background Process for User is Completed"
+msgstr ""
+
+#: includes/class-wksap.php:80
+msgid "View documentation"
+msgstr ""
+
+#: includes/class-wksap.php:80
+msgid "Docs"
+msgstr ""
+
+#: includes/class-wksap.php:81
+msgid "Visit customer support"
+msgstr ""
+
+#: includes/class-wksap.php:81
+msgid "Support"
+msgstr ""
+
+#. translators: %1$s for a opening tag and %2$s for closing tag
+#: includes/class-wksap.php:122
+#, php-format
+msgid "SAP Connector For WooCommerce is enabled but not effective. It requires %1$sWooCommerce Plugin%2$s in order to work."
+msgstr ""
+
+#: includes/class-wksap.php:147
+msgid "Cloning is forbidden."
+msgstr ""
+
+#: includes/class-wksap.php:156
+msgid "Deserializing instances of this class is forbidden."
+msgstr ""
+
+#: sap-connector-for-woocommerce.php:86
+msgid "Every 15 Minutes"
+msgstr ""
+
+#: templates/admin/class-wksap-categories-view.php:36
+#: templates/admin/class-wksap-orders-view.php:36
+#: templates/admin/class-wksap-products-view.php:36
+msgid "Upgrade to the Full edition to use full version"
+msgstr ""
+
+#: templates/admin/class-wksap-categories-view.php:39
+#: templates/admin/class-wksap-orders-view.php:39
+#: templates/admin/class-wksap-products-view.php:39
+msgid "Do you have full version?"
+msgstr ""
+
+#: templates/admin/class-wksap-categories-view.php:41
+#: templates/admin/class-wksap-orders-view.php:41
+#: templates/admin/class-wksap-products-view.php:41
+msgid "Please uninstall this version."
+msgstr ""
+
+#: templates/admin/class-wksap-categories-view.php:42
+#: templates/admin/class-wksap-orders-view.php:42
+#: templates/admin/class-wksap-products-view.php:42
+msgid "Remove files for this version"
+msgstr ""
+
+#: templates/admin/class-wksap-categories-view.php:43
+#: templates/admin/class-wksap-orders-view.php:43
+#: templates/admin/class-wksap-products-view.php:43
+msgid "Install new version"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:59
+#: templates/admin/class-wksap-settings-view.php:63
+#: templates/admin/class-wksap-settings-view.php:69
+#: templates/admin/class-wksap-settings-view.php:74
+#: templates/admin/class-wksap-settings-view.php:225
+msgid "Connection Status"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:59
+msgid "Please fill the correct instance URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:60
+msgid "Connection Status: Please fill the correct instance URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:61
+#: templates/admin/class-wksap-settings-view.php:65
+#: templates/admin/class-wksap-settings-view.php:71
+#: templates/admin/class-wksap-settings-view.php:75
+msgid "Connection"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:69
+#: templates/admin/class-wksap-settings-view.php:225
+msgid "Successfully Connected"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:70
+msgid "Connection Status: Successfully Connected"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:74
+#: templates/admin/class-wksap-settings-view.php:75
+msgid "License Key is not matched"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:82
+msgid "User Configuration"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:82
+msgid "User Configuration Updated"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:100
+msgid "Reset :"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:100
+msgid "All mappings have been reset"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:123
+msgid "Connection Status : "
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:123
+msgid " Connection Refreshed"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:127
+msgid "Log Deletion:"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:127
+msgid "Logs from before last seven days have been deleted"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:142
+msgid "Establish Connection With SAP Business One"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:148
+#: templates/admin/class-wksap-settings-view.php:262
+msgid "SAP Username"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:149
+msgid "Fill the SAP Business One Username"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:155
+#: templates/admin/class-wksap-settings-view.php:274
+msgid "SAP Password"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:156
+msgid "Fill the SAP Business One Password"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:162
+#: templates/admin/class-wksap-settings-view.php:287
+msgid "SAP Company DB"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:163
+msgid "Fill the SAP Business One Company DB(Case-Sensitive)"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:169
+msgid "SAP Service Layer  URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:170
+msgid "Fill the SAP Business One Service Layer URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:176
+#: templates/admin/class-wksap-settings-view.php:309
+msgid "SAP Prefix"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:177
+msgid "This prefix will be used on Item Number for uniqueness. It accepts a maximum of 3 characters"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:183
+#: templates/admin/class-wksap-settings-view.php:320
+msgid "License Key"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:184
+msgid "Enter the License Key which is provided by Webkul"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:187
+msgid "To get License Key, mail us at: "
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:187
+msgid "support@webkul.com"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:187
+msgid "with your hostname:"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:189
+msgid "Not Available"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:198
+msgid "Verify Connection"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:230
+msgid "Connection Settings"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:242
+msgid "Unknown Tab"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:242
+msgid "Please Recheck Tab in URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:258
+msgid "WooCommerce SAP Business One Connection Information"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:263
+msgid "Connected SAP Username"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:275
+msgid "Connected SAP Password"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:288
+msgid "Connected SAP Company DB"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:298
+msgid "SAP Service Layer URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:299
+msgid "Connected SAP Instance URL"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:310
+msgid "This prefix will be used on Item Number for uniqueness. It accepts a maximum of 3 characters "
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:321
+msgid "Connected License Key with the Connector"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:339
+msgid "Refresh Connection"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:343
+msgid "Disconnect Connection"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:346
+msgid "Reset All Mapping"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:349
+msgid "Delete Logs older than last 7 days"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:349
+msgid "Delete Logs"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:369
+msgid "WooCommerce User Configurations"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:374
+msgid "Sync User to SAP"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:376
+msgid "Enable this to activate WooCommerce user Sync functionality."
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:387
+msgid "Enable Auto User Synchronization"
+msgstr ""
+
+#: templates/admin/class-wksap-settings-view.php:389
+msgid "Enable: WooCommerce User will gets Synced as SAP Business Patner in Real-Time"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:355
+msgid "Re-synchronize"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:370
+msgid "Successfully Synchronized"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:376
+msgid "Now Synchronize"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:391
+msgid "Username"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:392
+msgid "Email"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:393
+msgid "WooCommerce User ID"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:394
+msgid "SAP Business Partner ID"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:395
+msgid "Synced At"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:396
+msgid "Action"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:508
+#: templates/admin/class-wksap-user-table.php:514
+msgid "Export Selected User(s)"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:509
+#: templates/admin/class-wksap-user-table.php:515
+msgid "Unlink Selected User(s)"
+msgstr ""
+
+#: templates/admin/class-wksap-user-table.php:510
+#: templates/admin/class-wksap-user-table.php:516
+msgid "Unlink All Mapping"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:134
+#: templates/admin/class-wksap-users-view.php:141
+msgid "Sync Error:"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:135
+msgid "User Sync Disabled in Settings all actions runs but not perform."
+msgstr ""
+
+#. translators: %s: Support email link
+#: templates/admin/class-wksap-users-view.php:144
+#, php-format
+msgid "Only 50 Free Sync Allowed, For More Please Contact Us %s"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:157
+#: templates/admin/class-wksap-users-view.php:299
+msgid "Background process for user is running"
+msgstr ""
+
+#. translators: %1$d: Number of processed jobs, %2$d: Total number of jobs
+#: templates/admin/class-wksap-users-view.php:160
+#: templates/admin/class-wksap-users-view.php:302
+#, php-format
+msgid "Job processed %1$d out of %2$d"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:169
+msgid "Stop Background Job"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:175
+msgid "Background process for user is"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:176
+msgid "Stopped"
+msgstr ""
+
+#. translators: %d: Total number of all items
+#: templates/admin/class-wksap-users-view.php:201
+#, php-format
+msgid "All (%d)"
+msgstr ""
+
+#. translators: %d: Total number of synced items
+#: templates/admin/class-wksap-users-view.php:214
+#, php-format
+msgid "Synced items (%d)"
+msgstr ""
+
+#. translators: %d: Total number of unsynced items
+#: templates/admin/class-wksap-users-view.php:227
+#, php-format
+msgid "Unsynced items (%d)"
+msgstr ""
+
+#. translators: %d: Total number of items with sync errors
+#: templates/admin/class-wksap-users-view.php:240
+#, php-format
+msgid "Error in User Sync (%d)"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:251
+msgid "Search"
+msgstr ""
+
+#: templates/admin/class-wksap-users-view.php:277
+#: templates/admin/class-wksap-users-view.php:293
+msgid "Export Users"
+msgstr ""

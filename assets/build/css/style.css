@@ -1,0 +1,130 @@
+/* //Css fro admin side */
+#wksap-form #wksap-form .form-table th [type="text"] {
+    width: 100%;
+}
+
+#wksap-form .column-productimage,
+#wksap-form .column-categoryimage {
+    width: 50px;
+}
+
+#wksap-form .column-salesproductid,
+#wksap-form .column-salesuserid {
+    width: 170px;
+}
+
+#wksap-form .column-actionsync,
+#wksap-form .column-order_actions {
+    width: 80px;
+}
+
+#wksap-form .column-actionsync > span {
+    margin-right: 5px;
+}
+
+#wksap-form .column-salescategoryid {
+    width: 180px;
+}
+
+#wksap-form .resync,
+#wksap-form .resync-cat,
+#wksap-form .resync-prod,
+#wksap-form .wksap-resync-user,
+#wksap-form .resync-prod-imp,
+#wksap-form .resync-cat-imp {
+    cursor: pointer;
+}
+
+
+/* Add New CSS code for Toggle */
+.wksap-switch {
+    position: relative;
+    display: inline-block;
+    width: 90px;
+    height: 34px;
+}
+
+.wksap-switch input {
+    display: none;
+}
+
+.wksap-slider {
+    position: relative;
+    cursor: pointer;
+    bottom: -8px;
+    height: 16px;
+    width: 32px;
+    background-color: #999;
+    transition: 0.4s;
+    border-radius: 10em;
+    border: 2px solid #999;
+}
+
+.wksap-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    background: #fff;
+    transition: transform 0.4s ease;
+}
+
+input:checked + .wksap-slider {
+    background-color: #935687;
+    border-color: #935687;
+}
+
+input:focus + .wksap-slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .wksap-slider:before {
+    transform: translateX(26px); /* Moves the slider to the right */
+}
+
+/*------ ADDED CSS ---------*/
+
+.wksap-slider:after {
+    content: 'OFF';
+    color: white;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+    font-family: Verdana, sans-serif;
+}
+
+input:checked + .wksap-slider:after {
+    content: 'ON'; /* Switches text to ON when checked */
+}
+
+/* Hide entity button */
+.wksap-hideentitybutton {
+    display: none;
+}
+
+/* Styling for config button table */
+.wksap-config-button-table tr td {
+    min-width: 120px;
+}
+
+/* Gray text class */
+.wksap-gray {
+    color: gray;
+}
+/* Disabled button */
+.wksap-button-disabled {
+    pointer-events: none;
+    opacity: 0.5; /* Optional: makes it look disabled */
+}
+.sap-connector_page_wksap_sync_user .dashicons-yes{
+    color: green;
+}
+.sap-connector_page_wksap_sync_user .dashicons-welcome-comments{
+    color: red
+}

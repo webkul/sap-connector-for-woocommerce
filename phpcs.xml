@@ -1,0 +1,402 @@
+<?xml version="1.0"?>
+<ruleset name="WordPress WooCommerce Coding Standards" lwdt="20251128">
+	<description>PHP_CodeSniffer version 4.0.1 (stable) by Squiz and PHPCSStandards</description>
+
+	<!-- Exclude paths -->
+	<exclude-pattern>assets/</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+
+	<!-- Configs -->
+	<config name="minimum_wp_version" value="6.7"/>
+	<config name="minimum_supported_wp_version" value="6.7"/>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="sap-connector-for-woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Only check PHP files. -->
+	<arg name="extensions" value="php"/>
+
+	<!-- Show progress, show the error codes for each message (source). -->
+	<arg value="ps"/>
+
+	<arg name="colors"/>
+
+	<!-- Strip the filepaths down to the relevant bit. -->
+	<arg name="basepath" value="."/>
+
+	<!-- Check up to 75 files simultaneously. -->
+	<arg name="parallel" value="75"/>
+
+	  <!-- Include the whole PEAR standard -->
+    <rule ref="PEAR">
+        <exclude name="PEAR.NamingConventions.ValidFunctionName"/>
+        <exclude name="PEAR.NamingConventions.ValidVariableName"/>
+        <exclude name="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"/>
+        <exclude name="PEAR.Commenting.ClassComment"/>
+        <exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamName"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingAuthorTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingCategoryTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingPackageTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
+        <exclude name="PEAR.Commenting.FileComment.MissingLicenseTag"/>
+        <exclude name="PEAR.Commenting.InlineComment"/>
+        <exclude name="Generic.Files.LineLength"/>
+        <exclude name="PEAR.WhiteSpace.ScopeIndent"/>
+        <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine"/>
+        <exclude name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine"/>
+    </rule>
+
+	<rule ref="WordPress">
+		<!-- This project needs to comply with naming standards from PHPCS, not WP. -->
+		<exclude name="WordPress.Files.FileName"/>
+		<exclude name="WordPress.NamingConventions.ValidVariableName"/>
+
+		<!-- While conditions with assignments are a typical way to walk the token stream. -->
+		<exclude name="Generic.CodeAnalysis.AssignmentInCondition.FoundInWhileCondition"/>
+
+		<!-- The code in this project is run in the context of PHPCS, not WP. -->
+		<exclude name="WordPress.DateTime"/>
+		<exclude name="WordPress.DB"/>
+		<exclude name="WordPress.Security"/>
+		<exclude name="WordPress.WP"/>
+
+		<!-- Linting is done in a separate CI job, no need to duplicate it. -->
+		<exclude name="Generic.PHP.Syntax"/>
+	</rule>
+	<rule ref="WordPress.DB.PreparedSQL"/>
+	<rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+
+	<!--
+	#############################################################################
+	SNIFF SPECIFIC CONFIGURATION
+	#############################################################################
+	-->
+	<rule ref="WordPress.Arrays.MultipleStatementAlignment">
+		<properties>
+			<property name="alignMultilineItems" value="!=100"/>
+			<property name="exact" value="false" phpcs-only="true"/>
+		</properties>
+	</rule>
+	<rule ref="WordPress.Arrays.ArrayIndentation"/>
+
+	<!-- WordPress Rules -->
+	<rule ref="WordPress-Core"/>
+	<rule ref="WordPress-Docs"/>
+	<rule ref="WordPress-Extra">
+		<exclude name="WordPress.WP.TimezoneChange.timezone_change_date_default_timezone_set"/>
+		<exclude name="Squiz.Commenting.FileComment.SpacingAfterComment" />
+	</rule>
+	<rule ref="WordPress.WP.I18n"/>
+
+	<!-- WooCommerce Rules -->
+	<rule ref="WooCommerce">
+		<exclude name="WooCommerce.Commenting.CommentHooks.MissingHookComment"/>
+	</rule>
+	<rule ref="WooCommerce-Core"/>
+
+	<!--
+	#############################################################################
+	Handbook: PHP - Indentation.
+	Ref: https://make.wordpress.org/core/handbook/best-practices/coding-standards/php/#indentation
+	#############################################################################-->
+	<!-- Covers rule: Your indentation should always reflect logical structure. -->
+	<rule ref="Generic.WhiteSpace.ScopeIndent">
+		<properties>
+			<property name="exact" value="false"/>
+			<property name="indent" value="4"/>
+			<property name="tabIndent" value="true"/>
+			<property name="ignoreIndentationTokens" type="array">
+				<element value="T_HEREDOC"/>
+				<element value="T_NOWDOC"/>
+				<element value="T_INLINE_HTML"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Include some sniffs from other standards that don't conflict with PEAR 25-11-28 -->
+	    <!-- Use select error codes from the Squiz FunctionComment sniff, which shouldn't conflict with the PEAR sniff. -->
+    <rule ref="Squiz.Commenting.FunctionComment.InvalidNoReturn"/>
+    <rule ref="Squiz.Commenting.FunctionComment.InvalidReturnNotVoid"/>
+    <rule ref="Squiz.Commenting.FunctionComment.ThrowsNotCapital"/>
+    <rule ref="Squiz.Commenting.FunctionComment.ThrowsNoFullStop"/>
+    <rule ref="Squiz.Commenting.FunctionComment.InvalidReturnVoid"/>
+    <rule ref="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+    <rule ref="Squiz.Commenting.FunctionComment.InvalidTypeHint"/>
+    <rule ref="Squiz.Commenting.FunctionComment.ParamNameUnexpectedAmpersandPrefix"/>
+    <rule ref="Squiz.Commenting.FunctionComment.ParamCommentNotCapital"/>
+
+    <rule ref="Squiz.Arrays.ArrayBracketSpacing">
+	  <exclude name="Squiz.Arrays.ArrayBracketSpacing.SpaceAfterBracket"/>
+	  <exclude name="Squiz.Arrays.ArrayBracketSpacing.SpaceBeforeBracket"/>
+	</rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration">
+		<exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed"/>
+	</rule>
+    <rule ref="PSR12.Classes.ClosingBrace"/>
+    <rule ref="Squiz.ControlStructures.ControlSignature"/>
+    <rule ref="PSR2.ControlStructures.ElseIfDeclaration"/>
+    <rule ref="Squiz.Commenting.BlockComment"/>
+    <rule ref="Squiz.Commenting.DocCommentAlignment"/>
+    <rule ref="Squiz.Commenting.EmptyCatchComment"/>
+    <rule ref="Squiz.Commenting.InlineComment"/>
+    <rule ref="Squiz.Commenting.PostStatementComment">
+        <exclude name="Squiz.Commenting.PostStatementComment.AnnotationFound"/>
+        <exclude name="Squiz.Commenting.PostStatementComment.Found"/>
+    </rule>
+    <rule ref="Squiz.Commenting.VariableComment">
+        <exclude name="Squiz.Commenting.VariableComment.DeprecatedTagNotAllowed"/>
+        <exclude name="Squiz.Commenting.VariableComment.LinkTagNotAllowed"/>
+    </rule>
+    <rule ref="Squiz.Formatting.OperatorBracket">
+		<exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
+	</rule>
+    <rule ref="Squiz.Functions.FunctionDeclarationArgumentSpacing">
+        <properties>
+            <property name="equalsSpacing" value="1"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.Operators.ComparisonOperatorUsage">
+		<exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
+		<exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
+	</rule>
+    <rule ref="Squiz.Scope.MethodScope"/>
+    <rule ref="Squiz.Strings.DoubleQuoteUsage.NotRequired"/>
+    <rule ref="Generic.Strings.UnnecessaryHeredoc"/>
+    <rule ref="Squiz.WhiteSpace.ControlStructureSpacing"/>
+    <rule ref="Squiz.WhiteSpace.FunctionClosingBraceSpace">
+        <exclude name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"/>
+    </rule>
+    <rule ref="PSR2.Methods.FunctionClosingBrace"/>
+    <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+		<exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
+		<exclude name="Squiz.WhiteSpace.FunctionSpacing.BeforeFirst"/>
+		<exclude name="Squiz.WhiteSpace.FunctionSpacing.After"/>
+        <properties>
+            <property name="spacingAfterLast" value="0"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
+		<exclude name="Squiz.WhiteSpace.MemberVarSpacing.FirstIncorrect"/>
+	</rule>
+    <rule ref="Squiz.WhiteSpace.SuperfluousWhitespace"/>
+    <rule ref="Generic.ControlStructures.InlineControlStructure"/>
+    <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
+    <rule ref="Generic.NamingConventions.ConstructorName"/>
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <rule ref="Generic.PHP.LowerCaseKeyword"/>
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+    <rule ref="Generic.WhiteSpace.IncrementDecrementSpacing"/>
+    <rule ref="PSR2.Classes.PropertyDeclaration"/>
+    <rule ref="PSR2.Methods.MethodDeclaration"/>
+    <rule ref="PSR2.Files.EndFileNewline"/>
+    <rule ref="PSR12.Files.OpenTag"/>
+    <rule ref="Zend.Files.ClosingTag"/>
+	<!-- 25-11-28 End -->
+
+	<!-- We use custom indent rules for arrays 25-11-28 -->
+    <rule ref="Generic.Arrays.ArrayIndent"/>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.KeyNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.ValueNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNotAligned">
+        <severity>0</severity>
+    </rule>
+    <rule ref="Squiz.Arrays.ArrayDeclaration.CloseBraceNewLine">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Don't enforce single line arrays for single item arrays in test files. Readability over brevity. -->
+    <rule ref="Squiz.Arrays.ArrayDeclaration.MultiLineNotAllowed">
+        <exclude-pattern>tests/*\.php$</exclude-pattern>
+        <exclude-pattern>Standards/*/Tests/*/*UnitTest\.php$</exclude-pattern>
+    </rule>
+
+    <!-- Check var names, but we don't want leading underscores for private vars -->
+    <rule ref="Squiz.NamingConventions.ValidVariableName">
+		<exclude name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"/>
+		<exclude name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"/>
+		<exclude name="Squiz.NamingConventions.ValidVariableName.StringNotCamelCaps"/>
+	</rule>
+    <rule ref="Squiz.NamingConventions.ValidVariableName.PrivateNoUnderscore">
+        <severity>0</severity>
+    </rule>
+
+    <!-- Only one argument per line in multi-line function calls -->
+    <rule ref="PEAR.Functions.FunctionCallSignature">
+        <properties>
+            <property name="allowMultipleArguments" value="false"/>
+        </properties>
+    </rule>
+
+	<!-- We use custom indent rules for arrays ends 25-11-28 -->
+
+	<!-- Have 12 chars padding maximum -->
+    <rule ref="Generic.Formatting.MultipleStatementAlignment">
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.Incorrect"/>
+		<exclude name="Generic.Formatting.MultipleStatementAlignment.NotSame"/>
+        <properties>
+            <property name="maxPadding" value="12"/>
+        </properties>
+    </rule>
+
+    <!-- Ban some functions -->
+    <rule ref="Generic.PHP.ForbiddenFunctions">
+        <properties>
+            <property name="forbiddenFunctions" type="array" extend="true">
+                <element key="print" value="echo"/>
+                <element key="create_function" value="null"/>
+                <element key="join" value="implode"/>
+            </property>
+        </properties>
+    </rule>
+
+    <!-- Do not allow unreachable code. -->
+    <rule ref="Squiz.PHP.NonExecutableCode"/>
+
+    <!-- Do not allow ambiguous conditions. -->
+    <rule ref="Generic.CodeAnalysis.RequireExplicitBooleanOperatorPrecedence"/>
+
+    <!-- This test file specifically *needs* Windows line endings for testing purposes. -->
+    <rule ref="Generic.Files.LineEndings.InvalidEOLChar">
+        <exclude-pattern>tests/Core/Tokenizers/PHP/*WinTest\.php</exclude-pattern>
+    </rule>
+
+    <!-- Avoid false positive with this sniff detecting itself -->
+    <rule ref="Generic.Commenting.Todo">
+        <exclude-pattern>src/Standards/Generic/Sniffs/Commenting/TodoSniff\.php</exclude-pattern>
+        <exclude-pattern>src/Standards/Generic/Tests/Commenting/TodoUnitTest\.php</exclude-pattern>
+    </rule>
+
+    <!-- Require visibility for class constants. -->
+    <rule ref="PSR12.Properties.ConstantVisibility"/>
+
+    <!-- Handle consistent formatting of return types. -->
+    <rule ref="PSR12.Functions.ReturnTypeDeclaration"/>
+
+    <!-- Separate header blocks with a single blank line. -->
+    <rule ref="PSR12.Files.FileHeader">
+        <exclude name="PSR12.Files.FileHeader.SpacingAfterTagBlock"/>
+    </rule>
+    <rule ref="PSR12.Files.FileHeader.SpacingAfterNamespaceBlock">
+        <!-- Prevent conflict with function spacing sniff. -->
+        <exclude-pattern>/requirements\.php</exclude-pattern>
+    </rule>
+
+	<!-- Check code for cross-version PHP compatibility. -->
+	<config name="testVersion" value="7.2-"/>
+	<rule ref="PHPCompatibility">
+		<!-- Exclude PHP constants back-filled by PHPCS. -->
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_coalesce_equalFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_bad_characterFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_fnFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_attributeFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_matchFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_nullsafe_object_operatorFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_name_fully_qualifiedFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_name_qualifiedFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_name_relativeFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_readonlyFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_enumFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_public_setFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_protected_setFound"/>
+		<exclude name="PHPCompatibility.Constants.NewConstants.t_private_setFound"/>
+		<exclude name="PHPCompatibility.Constants.RemovedConstants.t_bad_characterFound"/>
+	</rule>
+
+	<!--Exclude WooCommerce sanitization function -->
+	<rule ref="WordPress.Security.ValidatedSanitizedInput">
+		<properties>
+			<property name="customSanitizingFunctions" type="array">
+				<element value="wc_clean"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- WordPress theme files and directories must be named using lowercase letters. Words must be separated by hyphens, not camelCase or underscores. -->
+	<rule ref="WordPress.Files.FileName"/>
+
+	<!-- Validate, sanitize, and escape everything. -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="wk_marketplace_seller"/>
+				<element value="manage_woocommerce"/>
+				<element value="delete_published_products"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- The eval() function must not be used. -->
+	<rule ref="Squiz.PHP.Eval.Discouraged">
+		<type>error</type>
+		<message>eval() is a security risk so not allowed.</message>
+	</rule>
+
+	<!-- A unique prefix must be used for all function names, classes, hooks, public/global variables, action/filter hooks, custom image sizes, constants, database entries, theme-specific scripts and theme-specific styles to avoid conflicts with plugins and other themes. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals"/>
+
+	<!-- Rule: The goto statement must never be used. -->
+	<rule ref="Generic.PHP.DiscourageGoto">
+		<type>error</type>
+		<message>The "goto" language construct should not be used.</message>
+	</rule>
+	<!-- A few rules not mentioned in the official documentation. -->
+	<rule ref="Generic.Files.ByteOrderMark"/>
+
+		<!-- Tabs must be used for indentation. -->
+	<arg name="tab-width" value="4"/>
+	<rule ref="Generic.WhiteSpace.DisallowSpaceIndent"/>
+
+	<!-- The use of PHP short tags is not allowed. -->
+	<rule ref="Generic.PHP.DisallowShortOpenTag"/>
+	<rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
+
+	<!-- The create_function() function has been deprecated as of PHP 7.2.0 and must no longer be used. -->
+	<rule ref="WordPress.PHP.RestrictedPHPFunctions"/>
+
+	<!-- The "@" operator must not be used to suppress error messages or notices. -->
+	<rule ref="WordPress.PHP.NoSilencedErrors"/>
+
+	<!-- Using the POSIX Regex functions ereg_* aren’t allowed. -->
+	<rule ref="VariableAnalysis"/>
+
+	<rule ref="PSR12">
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+		<exclude name="PSR12.Operators.OperatorSpacing"/>
+		<exclude name="Generic.Files.LineLength.TooLong"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotCamelCaps"/>
+		<exclude name="Squiz.Classes.ValidClassName.NotPascalCase"/>
+		<exclude name="PSR1.Files.SideEffects.FoundWithSymbols"/>
+		<exclude name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"/>
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceAfterOpenBracket"/>
+		<exclude name="PSR2.Methods.FunctionCallSignature.SpaceBeforeCloseBracket"/>
+		<exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpaceBeforeCloseBrace"/>
+		<exclude name="PSR12.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"/>
+		<exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
+  	</rule>
+
+
+	<!-- Enforce that classes are abstract or final. -->
+	<rule ref="Universal.Classes.RequireFinalClass">
+		<!-- ... with the exception of four sniffs which are known to be extended by external standards. -->
+		<exclude-pattern>/WordPress/Sniffs/NamingConventions/ValidHookNameSniff\.php$</exclude-pattern>
+		<exclude-pattern>/WordPress/Sniffs/Security/(EscapeOutput|NonceVerification|ValidatedSanitizedInput)Sniff\.php$</exclude-pattern>
+		<exclude name="Universal.Classes.RequireFinalClass.NonFinalClassFound"/>
+	</rule>
+
+	<!-- Enforce that methods in traits are always final. -->
+	<rule ref="Universal.FunctionDeclarations.RequireFinalMethodsInTraits"/>
+
+</ruleset>
+
