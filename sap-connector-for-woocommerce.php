@@ -44,6 +44,7 @@ use WKSAP\INCLUDES;
 defined( 'WKSAP_FILE_NAME' ) || define( 'WKSAP_FILE_NAME', __FILE__ );
 defined( 'WKSAP_PLUGIN_FILE' ) || define( 'WKSAP_PLUGIN_FILE', plugin_dir_path( __FILE__ ) );
 defined( 'WKSAP_PLUGIN_BASENAME' ) || define( 'WKSAP_PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
+defined( 'WKSAP_SAP_PLUGIN_URL' ) || define( 'WKSAP_SAP_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 // Load core auto-loader.
 require WKSAP_PLUGIN_FILE . '/includes/class-wksap-connect-autoload.php';

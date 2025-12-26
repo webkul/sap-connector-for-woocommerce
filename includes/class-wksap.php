@@ -48,8 +48,6 @@ if ( ! class_exists( 'WKSAP' ) ) {
 		 * @return void
 		 */
 		public function wksap_define_constants() {
-			defined( 'WKSAP_SAP_PLUGIN_URL' ) || define( 'WKSAP_SAP_PLUGIN_URL', plugin_dir_url( __DIR__ ) );
-			defined( 'WKSAP_PLUGIN_URL' ) || define( 'WKSAP_PLUGIN_URL', plugins_url() );
 			defined( 'WKSAP_VERSION' ) || define( 'WKSAP_VERSION', '1.0.0' );
 			defined( 'WKSAP_SCRIPT_VERSION' ) || define( 'WKSAP_SCRIPT_VERSION', '1.0.0' );
 		}

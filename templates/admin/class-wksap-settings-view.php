@@ -45,7 +45,7 @@ if ( ! class_exists( 'WKSAP_Settings_View' ) ) {
 		public function wksap_init_admin() {
 			if ( isset( $_REQUEST['wksapnonce_connection_list'] ) ) {
 				$wksap_connection_nonce = sanitize_text_field( wp_unslash( ( $_REQUEST['wksapnonce_connection_list'] ) ) );
-				if ( ( ! empty( $_REQUEST['wksapnonce_connection_list'] ) ) && ( wp_verify_nonce( $wksap_connection_nonce, 'wksap_connection_table_action' ) || current_user_can( 'manage_options' ) ) ) {
+				if ( ( ! empty( $_REQUEST['wksapnonce_connection_list'] ) ) && ( wp_verify_nonce( $wksap_connection_nonce, 'wksap_connection_table_action' ) && current_user_can( 'manage_options' ) ) ) {
 					if ( isset( $_POST['wksap_connector_data'] ) ) {
 						$json_string = str_replace( '\\', '', sanitize_text_field( wp_unslash( $_POST['wksap_connector_data'] ) ) );
 						$sap_cred    = json_decode( $json_string );

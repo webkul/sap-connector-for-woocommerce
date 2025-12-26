@@ -310,9 +310,7 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 				$error_list   = array();
 				$wksap_config = get_option( 'wksap_config' );
 
-				$wksap_nonce = isset( $_POST['wksap_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wksap_nonce'] ) ) : '';
-
-				if ( empty( $wksap_nonce ) || ( ! wp_verify_nonce( $wksap_nonce, 'wksap_nonce' ) || ! current_user_can( 'manage_options' ) ) ) {
+				if ( ! check_ajax_referer( 'wksap_nonce', 'wksap_nonce', false ) || ! current_user_can( 'manage_options' ) ) {
 					HELPERS\WKSAP_Helper::wksap_generate_log( esc_html__( 'Debug', 'sap-connector-for-woocommerce' ), __LINE__ . esc_html__( 'nonce not verifyed', 'sap-connector-for-woocommerce' ), true );
 					wp_send_json_error( esc_html__( 'Security check failed', 'sap-connector-for-woocommerce' ) );
 					wp_die();
@@ -488,12 +486,13 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 						} else {
 							if ( ! $error_flag ) {
 								delete_user_meta( $user_id, 'wk_sap_error' );
+								$sap_account_id = isset( $result->CardCode ) ? $result->CardCode : '';
+								add_user_meta( $user_id, 'wk_sap_user_id', $sap_account_id );
 							} else {
 								add_user_meta( $user_id, 'wk_sap_error', implode( ',', $error_list ) );
 								delete_user_meta( $user->data->ID, 'wk_sap_error' );
 							}
-							$sap_account_id = isset( $result->CardCode ) ? $result->CardCode : '';
-							add_user_meta( $user_id, 'wk_sap_user_id', $sap_account_id );
+
 							$processed_item['added']      += 1;
 							$processed_item['sap_user_id'] = $sap_account_id;
 						}
@@ -551,11 +550,10 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 			if ( ! isset( self::$wksap_user_config->wksap_sync_user ) || ! self::$wksap_user_config->wksap_sync_user ) {
 				return;
 			}
-
-			$wksap_nonce = isset( $_POST['wksap_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wksap_nonce'] ) ) : '';
-
-			if ( empty( $wksap_nonce ) || ! wp_verify_nonce( $wksap_nonce, 'wksap_nonce' ) || ! current_user_can( 'manage_options' ) ) {
+			if ( ! check_ajax_referer( 'wksap_nonce', 'wksap_nonce', false ) || ! current_user_can( 'manage_options' ) ) {
+				HELPERS\WKSAP_Helper::wksap_generate_log( esc_html__( 'Debug', 'sap-connector-for-woocommerce' ), __LINE__ . esc_html__( 'nonce not verifyed', 'sap-connector-for-woocommerce' ), true );
 				wp_send_json_error( esc_html__( 'Invalid Nonce', 'sap-connector-for-woocommerce' ) );
+				wp_die();
 			}
 
 			$sync     = isset( $_POST['sync'] ) ? sanitize_text_field( wp_unslash( $_POST['sync'] ) ) : esc_attr( 'N' );
@@ -878,10 +876,11 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 			if ( ! isset( self::$wksap_user_config->wksap_sync_user ) || ! self::$wksap_user_config->wksap_sync_user ) {
 				return;
 			}
-			$wksap_nonce = isset( $_POST['wksap_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wksap_nonce'] ) ) : '';
-			if ( empty( $wksap_nonce ) || ( ! wp_verify_nonce( $wksap_nonce, 'wksap_nonce' ) || ! current_user_can( 'manage_options' ) ) ) {
+
+			if ( ! check_ajax_referer( 'wksap_nonce', 'wksap_nonce', false ) || ! current_user_can( 'manage_options' ) ) {
 				HELPERS\WKSAP_Helper::wksap_generate_log( esc_html__( 'Debug', 'sap-connector-for-woocommerce' ), __LINE__ . esc_html__( 'nonce not verifyed', 'sap-connector-for-woocommerce' ), true );
 				wp_send_json_error( esc_html__( 'Invalid Nonce', 'sap-connector-for-woocommerce' ) );
+				wp_die();
 			}
 
 			$sync       = isset( $_POST['sync'] ) ? sanitize_text_field( wp_unslash( $_POST['sync'] ) ) : esc_attr( 'N' );
@@ -1243,10 +1242,11 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 		 * @return void
 		 */
 		public static function wksap_stop_background_job() {
-			$wksap_nonce = isset( $_POST['wksap_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['wksap_nonce'] ) ) : '';
-			if ( empty( $wksap_nonce ) || ( ! wp_verify_nonce( $wksap_nonce, 'wksap_nonce' ) || ! current_user_can( 'manage_options' ) ) ) {
+
+			if ( ! check_ajax_referer( 'wksap_nonce', 'wksap_nonce', false ) || ! current_user_can( 'manage_options' ) ) {
 				HELPERS\WKSAP_Helper::wksap_generate_log( esc_html__( 'Debug', 'sap-connector-for-woocommerce' ), __LINE__ . esc_html__( 'nonce not verifyed', 'sap-connector-for-woocommerce' ), true );
 				wp_send_json_error( esc_html__( 'Invalid Nonce', 'sap-connector-for-woocommerce' ) );
+				wp_die();
 			}
 
 			$s_object = isset( $_POST['sObject'] ) ? sanitize_text_field( wp_unslash( $_POST['sObject'] ) ) : '';
@@ -1331,11 +1331,10 @@ if ( ! class_exists( 'WKSAP_MAIN' ) ) {
 			}
 			global $wpdb;
 			$wpdbs = $wpdb;
-
-			$wksap_nonce = isset( $_REQUEST['wksap_nonce'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wksap_nonce'] ) ) : '';
-			if ( empty( $wksap_nonce ) || ( ! wp_verify_nonce( $wksap_nonce, 'wksap_nonce' ) || ! current_user_can( 'manage_options' ) ) ) {
+			if ( ! check_ajax_referer( 'wksap_nonce', 'wksap_nonce', false ) || ! current_user_can( 'manage_options' ) ) {
 				HELPERS\WKSAP_Helper::wksap_generate_log( esc_html__( 'Debug', 'sap-connector-for-woocommerce' ), __LINE__ . esc_html__( ' nonce verification failed  ', 'sap-connector-for-woocommerce' ) );
 				wp_send_json_error( esc_html__( 'Invalid Nonce', 'sap-connector-for-woocommerce' ) );
+				wp_die();
 			}
 
 			$item_ids = isset( $_REQUEST['deleteIds'] ) ? array_map( 'absint', $_REQUEST['deleteIds'] ) : 0;

@@ -95,7 +95,6 @@ if ( ! class_exists( 'WKSAP_User_Table' ) ) {
 
 			return $data;
 		}
-
 		/**
 		 * Get filtered user IDs using optimized SQL.
 		 *
@@ -104,104 +103,65 @@ if ( ! class_exists( 'WKSAP_User_Table' ) ) {
 		 * @return array
 		 */
 		private function get_filtered_user_ids( $args ) {
-			global $wpdb;
-
-			$wpdbs        = $wpdb;
 			$offset       = ( $args['current_page'] - 1 ) * $args['per_page'];
 			$search       = isset( $args['search'] ) ? trim( sanitize_text_field( $args['search'] ) ) : '';
 			$item_type    = isset( $args['item_type'] ) ? $args['item_type'] : 'A';
 			$limit        = isset( $args['per_page'] ) ? $args['per_page'] : 20;
 			$sort_orderby = isset( $args['orderby'] ) ? $args['orderby'] : 'ID';
-			$sort_order   = isset( $args['order'] ) ? $args['order'] : 'ASC';
+			$sort_order   = isset( $args['order'] ) ? strtoupper( $args['order'] ) : 'ASC';
 
-			$base_query = $wpdbs->prepare(
-				" SELECT u.ID, u.user_login, u.user_email,
-					MAX(CASE WHEN um.meta_key = %s THEN um.meta_value END) AS sap_user_id,
-					MAX(CASE WHEN um.meta_key = %s THEN um.meta_value END) AS sap_error,
-					MAX(CASE WHEN um.meta_key = %s THEN um.meta_value END) AS sync_time
-				FROM {$wpdbs->users} u
-				LEFT JOIN {$wpdbs->usermeta} um ON u.ID = um.user_id AND um.meta_key IN ( 'wk_sap_user_id', 'wk_sap_error', 'wk_sap_user_sync_time')
-			",
-				'wk_sap_user_id',
-				'wk_sap_error',
-				'wk_sap_user_sync_time'
-			);
-
-			$where_conditions  = array( '1=1' );
-			$having_conditions = array();
-
-			if ( ! empty( $search ) ) {
-				$search_term        = '%' . $wpdbs->esc_like( $search ) . '%';
-				$where_conditions[] = $wpdbs->prepare( '(u.user_login LIKE %s OR u.user_email LIKE %s)', $search_term, $search_term );
-			}
-
-			switch ( $item_type ) {
-				case 'U':
-					$having_conditions[] = '(sap_user_id IS NULL AND sap_error IS  NULL)';
-					break;
-				case 'E':
-					$having_conditions[] = 'sap_error IS NOT NULL';
-					break;
-				case 'S':
-					$having_conditions[] = 'sap_user_id IS NOT NULL AND sap_error IS NULL';
-					break;
-				case 'A':
-				default:
-					break;
-			}
-			$where_clause = implode( ' AND ', $where_conditions );
-			$having_clause = '';
-			if ( ! empty( $having_conditions ) ) {
-				$having_clause = implode( ' AND ', $having_conditions );
-			}
+			$orderby = 'ID';
 
 			$allowed_orderby = array(
-				'username'     => 'u.user_login',
-				'email'        => 'u.user_email',
-				'woouserid'    => 'u.ID',
-				'sapaccountid' => 'sap_user_id',
-				'SyncedAt'     => 'sync_time',
+				'username'     => 'user_login',
+				'email'        => 'user_email',
+				'woouserid'    => 'ID',
+				'sapaccountid' => 'meta_value',
+				'SyncedAt'     => 'meta_value',
 			);
 
-			$orderby = 'u.ID';
-			if ( isset( $sort_orderby ) && array_key_exists( $sort_orderby, $allowed_orderby ) ) {
+			if ( isset( $allowed_orderby[ $sort_orderby ] ) ) {
 				$orderby = $allowed_orderby[ $sort_orderby ];
 			}
+			$meta_query = array( 'relation' => 'AND' );
 
-			$order = 'ASC';
-			if ( isset( $sort_order ) && in_array( strtoupper( $sort_order ), array( 'ASC', 'DESC' ), true ) ) {
-				$order = strtoupper( $sort_order );
-			}
-
-			$limit  = max( 1, min( 1000, (int) $limit ) );
-			$offset = max( 0, (int) $offset );
-
-			if ( ! empty( $having_clause ) ) {
-				$base_query .= $wpdbs->prepare(
-					' WHERE %1s GROUP BY u.ID, u.user_login, u.user_email HAVING %2s ORDER BY %3s %4s LIMIT %d OFFSET %d ',
-					$where_clause,
-					$having_clause,
-					$orderby,
-					$order,
-					$limit,
-					$offset
+			if ( 'U' === $item_type ) {
+				$meta_query[] = array(
+					'key'     => 'wk_sap_user_id',
+					'compare' => 'NOT EXISTS',
 				);
-			} else {
-				$base_query .= $wpdbs->prepare(
-					' WHERE %1s GROUP BY u.ID, u.user_login, u.user_email ORDER BY %2s %3s LIMIT %d OFFSET %d ',
-					$where_clause,
-					$orderby,
-					$order,
-					$limit,
-					$offset
+				$meta_query[] = array(
+					'key'     => 'wk_sap_error',
+					'compare' => 'NOT EXISTS',
+				);
+			} elseif ( 'E' === $item_type ) {
+				$meta_query[] = array(
+					'key'     => 'wk_sap_error',
+					'compare' => 'EXISTS',
+				);
+			} elseif ( 'S' === $item_type ) {
+				$meta_query[] = array(
+					'key'     => 'wk_sap_user_id',
+					'compare' => 'EXISTS',
+				);
+				$meta_query[] = array(
+					'key'     => 'wk_sap_error',
+					'compare' => 'NOT EXISTS',
 				);
 			}
+			$query_args = array(
+				'search'         => '*' . esc_attr( $search ) . '*',
+				'search_columns' => array( 'user_login', 'user_email' ),
+				'meta_query'     => $meta_query,
+				'orderby'        => $orderby,
+				'order'          => $sort_order,
+				'number'         => $limit,
+				'offset'         => $offset,
+			);
 
-			$query       = stripslashes( $base_query );
-
-			return $wpdbs->get_results( $query );
+			$user_query = new \WP_User_Query( $query_args );
+			return $user_query->get_results();
 		}
-
 		/**
 		 * Get total count of filtered users.
 		 *
@@ -210,52 +170,57 @@ if ( ! class_exists( 'WKSAP_User_Table' ) ) {
 		 * @return int
 		 */
 		private function get_filtered_users_count( $args ) {
-			global $wpdb;
 
-			$wpdbs     = $wpdb;
 			$search    = isset( $args['search'] ) ? trim( sanitize_text_field( $args['search'] ) ) : '';
 			$item_type = isset( $args['item_type'] ) ? $args['item_type'] : 'A';
 
-			$base_query       = $wpdb->prepare(
-				"
-                SELECT COUNT(DISTINCT u.ID)
-                FROM {$wpdb->users} AS u
-                LEFT JOIN {$wpdb->usermeta} AS um_sap_id
-                    ON u.ID = um_sap_id.user_id
-                    AND um_sap_id.meta_key = %s
-                LEFT JOIN {$wpdb->usermeta} AS um_error
-                    ON u.ID = um_error.user_id
-                    AND um_error.meta_key = %s
-                ",
-				'wk_sap_user_id',
-				'wk_sap_error'
+			$query_args = array(
+				'count_total' => true,
+				'fields'      => 'ID',
 			);
-			$where_conditions = array( '1=1' );
 
-			// Add search condition.
 			if ( ! empty( $search ) ) {
-				$search_term        = '%' . $wpdbs->esc_like( $search ) . '%';
-				$where_conditions[] = $wpdbs->prepare( '(u.user_login LIKE %s OR u.user_email LIKE %s)', $search_term, $search_term );
+				$query_args['search']         = '*' . esc_attr( $search ) . '*';
+				$query_args['search_columns'] = array( 'user_login', 'user_email' );
 			}
 
-			// Add filter conditions.
+			$meta_query = array( 'relation' => 'AND' );
+
 			switch ( $item_type ) {
-				case 'U': // Unsynced users.
-					$where_conditions[] = '(um_sap_id.meta_value IS NULL AND um_error.meta_value IS NULL)';
+				case 'U':
+					$meta_query[] = array(
+						'key'     => 'wk_sap_user_id',
+						'compare' => 'NOT EXISTS',
+					);
+					$meta_query[] = array(
+						'key'     => 'wk_sap_error',
+						'compare' => 'NOT EXISTS',
+					);
 					break;
-				case 'E': // Error users.
-					$where_conditions[] = 'um_error.meta_value IS NOT NULL';
+				case 'E':
+					$meta_query[] = array(
+						'key'     => 'wk_sap_error',
+						'compare' => 'EXISTS',
+					);
 					break;
-				case 'S': // Synced users.
-					$where_conditions[] = 'um_sap_id.meta_value IS NOT NULL AND um_error.meta_value IS NULL';
+				case 'S':
+					$meta_query[] = array(
+						'key'     => 'wk_sap_user_id',
+						'compare' => 'EXISTS',
+					);
+					$meta_query[] = array(
+						'key'     => 'wk_sap_error',
+						'compare' => 'NOT EXISTS',
+					);
+					break;
+				default:
 					break;
 			}
-
-			$where_clause = implode( ' AND ', $where_conditions );
-			$base_query .= $wpdbs->prepare( 'WHERE %1s', $where_clause );
-			$query        = stripslashes( $base_query );
-
-			return (int) $wpdbs->get_var( $query );
+			if ( ! empty( $meta_query ) ) {
+				$query_args['meta_query'] = $meta_query;
+			}
+			$user_query = new \WP_User_Query( $query_args );
+			return (int) $user_query->get_total();
 		}
 
 		/**
@@ -271,10 +236,13 @@ if ( ! class_exists( 'WKSAP_User_Table' ) ) {
 			}
 
 			foreach ( $user_data as $user ) {
+				$sap_user_id = get_user_meta( $user->ID, 'wk_sap_user_id', true );
+				$sap_error   = get_user_meta( $user->ID, 'wk_sap_error', true );
+				$sync_time   = get_user_meta( $user->ID, 'wk_sap_user_sync_time', true );
 				$this->user_meta_cache[ $user->ID ] = array(
-					'wk_sap_user_id'        => $user->sap_user_id,
-					'wk_sap_error'          => $user->sap_error,
-					'wk_sap_user_sync_time' => $user->sync_time,
+					'wk_sap_user_id'        => $sap_user_id,
+					'wk_sap_error'          => $sap_error,
+					'wk_sap_user_sync_time' => $sync_time,
 				);
 			}
 		}
@@ -419,11 +387,9 @@ if ( ! class_exists( 'WKSAP_User_Table' ) ) {
 		 */
 		public function get_sortable_columns() {
 			$sortable_columns = array(
-				'username'     => array( 'username', false ),
-				'email'        => array( 'email', false ),
-				'woouserid'    => array( 'woouserid', false ),
-				'sapaccountid' => array( 'sapaccountid', false ),
-				'SyncedAt'     => array( 'SyncedAt', false ),
+				'username'  => array( 'username', false ),
+				'email'     => array( 'email', false ),
+				'woouserid' => array( 'woouserid', false ),
 			);
 
 			return $sortable_columns;

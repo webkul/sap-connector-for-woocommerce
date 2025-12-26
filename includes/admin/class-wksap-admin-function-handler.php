@@ -177,7 +177,6 @@ if ( ! class_exists( 'WKSAP_Admin_Function_Handler' ) ) {
 		 */
 		public static function wksap_admin_enqueue_scripts() {
 			wp_enqueue_script( 'wksap-ajax-js-script', WKSAP_SAP_PLUGIN_URL . 'assets/dist/js/wksap-js-script.min.js', array( 'jquery' ), WKSAP_SCRIPT_VERSION, true );
-			wp_enqueue_script( 'wksap-ajax-script', WKSAP_PLUGIN_URL . '/woocommerce/assets/js/jquery-blockui/jquery.blockUI.min.js', array(), 2.7, true );
 			wp_register_style( 'wksap-css', WKSAP_SAP_PLUGIN_URL . 'assets/dist/css/style.min.css', array(), WKSAP_SCRIPT_VERSION, 'all' );
 			wp_enqueue_style( 'wksap-css' );
 			wp_enqueue_script( 'wksap-sweetalert2', WKSAP_SAP_PLUGIN_URL . 'assets/dist/js/sweetalert2.min.js', array(), WKSAP_SCRIPT_VERSION, true );
@@ -274,7 +273,7 @@ if ( ! class_exists( 'WKSAP_Admin_Function_Handler' ) ) {
 			);
 
 			wp_localize_script(
-				'wksap-ajax-script',
+				'wksap-ajax-js-script',
 				'wksap_ajax_object',
 				$admin_ajax_object
 			);
